@@ -46,10 +46,10 @@ import Foundation
 //2 * 3.14 * r^2
 var p = 2
 let s = 3.14
-print(2 * 3.14 * 2)
+print(2 * 3.14)
 
 func getSquare(curcle: Int) {
-    print(2 * 3.14 * 2)
+    print(2 * 3.14)
 }
 
 
