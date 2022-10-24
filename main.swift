@@ -45,14 +45,15 @@ import Foundation
 //Нахождение площади круга
 //2 * 3.14 * r^2
 var p = 2
-let s = 3.14
-print(2 * 3.14)
+let s = 3
+print(3 * 2)
+print(36 * 3.14)
 
 func getSquare(curcle: Int) {
-    print(2 * 3.14)
+    print(2 * 3)
 }
 
-
+//
 
 
 
