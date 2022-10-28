@@ -1,123 +1,150 @@
-import Network
 //
-//main.swift
-//SurveyReadline
+//  main.swift
+//  HomeW4st lesson
 //
-//Mambetalieva Kayra
-//on 18.10.22
+//  Created by Каира on 28.10.2022.
+//
 
 import Foundation
+//var secondString = ""
+//for num in 1...1000{
+//    if num % 10 == 2{
+//        secondString += "\(num),"
+//    }
+//}
+//print(secondString)
+//
+//var thirdString = ""
+//for num in 1...1000{
+//    if num % 10 == 3{
+//        thirdString += "\(num),"
+//    }
+//}
+//print(thirdString)
+//
+//var fourthString = ""
+//for num in 1...1000 where num % 10 == 4{
+//    fourthString += "\(num),"
+//}
+//print(fourthString)
+//
+//var fifthString = ""
+//for num in 1...1000{
+//    if num % 10 == 0{
+//        continue
+//    }
+//    if num  % 10 == 5{
+//        fifthString += "\(num),"
+//    }
+//}
+//print(fifthString)
 
-// задание константы и переменные
-let a: Int = 200
-let nation = "kyrgyz"
-let eye = "brown"
-let growth = "160"
-let gender  = "female"
-let planet = "planets"
-let sun  = "sun"
-let habit = "habit"
-let IQ  = "IQ"
-let ocean = "ocean"
+//var words = "Отвественность,скорость,день,действие,дерево,сайт,любовь,кошка,страсть,мудрость,форма,эрудиция,шторм,граница,механизм,белок,брокколи,киви,ромашка,горы"
 //
-print ("\(a)")
-print("\(nation)")
-print("\(eye)")
-print("\(growth)")
-print("\(gender)")
-print("\(planet)")
-print("\(sun)")
-print("\(habit)")
-print("\(IQ)")
-print("\(ocean)")
-//
-//
-//
-var b: Int = 40
-var age = 23
-var weight = 99
-var hair = "short"
-var teeth = "30"
-var statistics = "statistics"
-var news = "news"
-var money = "money"
-var president = "president"
-var world = "world"
-var int: Int = 200
-//
+//func printWords(string: String){
+//    var currentWordLength = 0
+//    var currentWord = ""
+//    for word in string{
+//        if word != ","{
+//            currentWord += String(word)
+//            currentWordLength += 1
+//        }else{
+//            print(" \(currentWord) - \(currentWordLength).")
+//            currentWordLength = 0
+//            currentWord = ""
+//        }
+//    }
+//}
+//printWords(string: words)
 
-print ("\(b)")
-print("\(age)")
-print("\(weight)")
-print("\(hair)")
-print("\(teeth)")
-print("\(statistics)")
-print("\(news)")
-print("\(money)")
-print("\(president)")
-print("\(world)")
-//////
-///////
-///////
-///
-//задание 2
-func sum(num: Int) {
-    print("\(num) *  1 = \(num * 1)")
-    print("\(num) *  2 = \(num * 2)")
-    print("\(num) *  3 = \(num * 3)")
-    print("\(num) *  4 = \(num * 4)")
-    print("\(num) *  5 = \(num * 5)")
-    print("\(num) *  6 = \(num * 6)")
-    print("\(num) *  7 = \(num * 7)")
-    print("\(num) *  8 = \(num * 8)")
-    print("\(num) *  9 = \(num * 9)")
-    print("\(num) *  10 = \(num * 10)")
+//калькулятор
+func add(n1: Int, n2: Int) {
+    print(n1 + n2)
+}
+
+func subtract(n1: Int, n2: Int) {
+    print(n1 - n2)
+}
+
+func multiply(n1: Int, n2: Int) {
+    print(n1 * n2)
+}
+
+func divide(n1: Int, n2: Int) {
+
+    let decimalN1 = Double(n1)
+    let decimalN2 = Double(n2)
+    print(decimalN1 / decimalN2)
 
 }
-// let readLine = readLine()
-//sum (num: 2)
 
-//3 задание
+func calculate(){
 
+    print("Введите первое число")
+    let firstnumber = readLine()!
 
-var text: String = "A" // -> "ABC"  "= - + *"
-    
-  // - + / *
-var number = 80
-var secondNumber = 20
-var thirdNumber = number / secondNumber
-print (number * secondNumber)
-print(thirdNumber)
+    let IntFirstNumber = Int(firstnumber)!
 
-var doubleNum = 66.5
-var doubleNum2 = 44.3
-print(doubleNum + doubleNum2)
-print(Int(doubleNum))
+    print("Введите второе число")
+    let secondNumber = readLine()!
 
-var stringOne = "KLM"
-var stringTwo = "OPR"
-print(stringOne + stringTwo)
-       
-print("\(number) * \(secondNumber) = \(number * secondNumber)")
-print("\(number) - \(secondNumber) = \(number - secondNumber)")
-print("\(number) + \(secondNumber) = \(number + secondNumber)")
-print("\(number) / \(secondNumber) = \(number / secondNumber)")
+    let IntSecondNumber = Int(secondNumber)!
 
+    print("Введите действие: ( +,-,/, *):")
+    let operation = readLine()!
 
-//%
+    switch operation {
+    case "+" :
+        add(n1: IntFirstNumber, n2: IntSecondNumber)
+    case "-":
+        subtract(n1: IntFirstNumber, n2: IntSecondNumber)
+    case "*":
+        multiply(n1: IntFirstNumber, n2: IntSecondNumber)
+    case "/":
+        divide(n1: IntFirstNumber, n2: IntSecondNumber)
+    default:
+        print ("Подумайте, Попробуйте еще раз!")
+        calculate()
+    }
+
+}
+
+calculate()
+calculate()
+calculate()
+calculate()
+
+var x: Double
+let angle = 90.0
+
+let sinus = sin(90.0 * Double.pi / 180)
+print("Sinus \(sinus)")
+
+let cosinus = cos(90.0 * Double.pi / 180)
+print("Cosinus \(cosinus)")
+
+let tangent = tan(90.0 * Double.pi / 180)
+print("Tangent \(tangent)")
+
 
 //
-print(number % 40 == 0)
-
-let stringName = "Kayra"
-let stringsurname = "Mambetalieva"
-var stringAge = "23 years old"
-var stringsity = "live in Kant"
 //
-print("\(stringName)")
-print("\(stringsurname)")
-print("\(stringAge)")
-print("\(stringsity)")
+////var adjasent = hypothenuze * math.cos(angle)
+////var opposite = hypothenuze * math.sin(angle)
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
 
 
 
