@@ -1,208 +1,119 @@
 import Foundation
-//1.Задание Решение
-//
-class Car{
+
+//#1. Создать класс Магазин
+//Свойства: Название, Площадь, Расположение, Часы работы, массив с товарами
+//Создать класс Товар
+
+class Store{
     var name: String
-    var color: String
-    var speed: Int
-    var acceleration: Int
-    func update(color2:String,speed2: Int, acceleration2: Int){
-            
-        color = color2
-        speed += speed2
-        acceleration -= acceleration2
+    var Square: Int
+    var location: String
+    var schedule: String
+    var product = [Product]()
+    init(name: String, Sguare: Int, location: String, schedule: String) {
+        self.name = name
+        self.Square = Sguare
+        self.location = location
+        self.schedule = schedule
+    }
+    func printInfo(){
+        print("name: \(name), Square:\(Square), location: \(location), schedule: \(schedule)")
+        for i in product{
+            print("name:\(i.name), amount: \(i.amount), prise: \(i.prise)")
+        }
+    }
+    func addToProduct(product2: Product){
+        var test = true
+        for i in product {
+            if product2.name == i.name && product2.prise == i.prise{
+                test = false
+                i.amount += product2.amount
+            }
+        }
+        if test != false{
+            product.append(product2)
+        }
+    }
+}
+class Product {
+    var name: String
+    var amount: Int
+    var prise: Int
+    init(name: String, amount: Int, prise: Int) {
+        self.name = name
+        self.amount = amount
+        self.prise = prise
     }
     
-    init(name: String, color: String,speed: Int, acceleration: Int) {
-        self.name = name
-        self.color = color
-        self.speed = speed
-        self.acceleration = acceleration
-    }
-    func printInfo(){
-        print("\(name),\(color),\(speed), \(acceleration)")
-    }
 }
-var car = Car(name: "Mercedes", color: "black", speed: 220, acceleration: 5)
-car.update(color2: "", speed2: 20, acceleration2: 2)
-car.printInfo()
-
-//2. Создать класс "Магазин" и "Продукт" и задать им свойства
-//Также создать функцию добавления продукта в магазин и отображения товаров в магазине
-class Narodnyi{
-    var name: String
-    var products: [ Producty] = [Producty]()
-    init(name: String) {
-        self.name = name
+class AutoParts: Store{
+    var autoParts = [Product]()
+    override init(name: String, Sguare: Int, location: String, schedule: String) {
+        super.init(name: name, Sguare: Sguare, location: location, schedule: schedule)
     }
-    func printInfo(){
-        print(name)
-
-        for lisst in products{
-            print("producty - \(lisst.name) cost - \(lisst.price) count - \(lisst.count)")
+    override func printInfo(){
+        print("name: \(name), Square:\(Square), location: \(location), schedule: \(schedule)")
+        for i in autoParts{
+            print("name:\(i.name), amount: \(i.amount), prise: \(i.prise)")
         }
     }
-    func products(lisst:Producty){
-        products.append(lisst)
-    }
-}
-var Shop = Narodnyi(name: "Narodnyi")
-Shop.printInfo()
-class Producty{
-    var name: String
-    var price: Int
-    var count: Int
-    init(name: String, price: Int, count: Int) {
-        self.name = name
-        self.price = price
-        self.count = count
-    }
-    func printInfo(){
-        print("\(name),\(price),\(count)")
-    }
-}
-var  bounty = Producty(name: "bounty", price: 100, count: 200 )
-var skitlss = Producty(name:"skitlss", price: 85, count: 36)
-var sugar = Producty(name: "sugar", price: 82, count: 48)
-var milk = Producty(name: "milk", price: 65, count: 72)
-var sweets = Producty(name: "sweets", price: 650, count: 4)
-Shop.products(lisst: bounty)
-Shop.products(lisst: skitlss)
-Shop.products(lisst: sugar)
-Shop.products(lisst: milk)
-Shop.products(lisst: sweets)
-Shop.printInfo()
-
-//3. Создать класс "Банк" и "Клиент"
-//создать функции для:
-//1) Подсчета клиентов банка
-//2) Отображения баланса по ID или фамилии клиента
-//3) Перевода средств от клиента к другому клиенту
-class Bank{
-    var name: String
-    var currency: String
-    var client = [Customer]()
-    init(name: String, currency: String) {
-        self.name = name
-        self.currency = currency
-    }
-    func addToBank(customer: Customer){
-        client.append(customer)
-    }
-    func amountOfClients(){
-        print("Количество клинтов:\(client.count)")
-    }
-    func showClientsBalanceById(Id1: Int){
-        var a = true
-        for client in client {
-            if Id1 == client.ID{
-                print("Баланс клиента:\(client.wallet)")
-                a = false
+   override  func addToProduct(product2: Product){
+        var test = true
+        for i in autoParts {
+            if product2.name == i.name && product2.prise == i.prise{
+                test = false
+                i.amount += product2.amount
             }
         }
-        if a == true {
-            print("Клиентов с таким ID не найдено")
+        if test != false{
+            autoParts.append(product2)
         }
     }
-    func showClientBalabceBySurname(surname: String){
-        var s = true
-        for client in client {
-            if surname == client.surname{
-                print("Баланс клиента:\(client.wallet)")
-                s = false
-            }
-        }
-        if s == true{
-            print("Клиента с такой фамилией не найдено")
-        }
+}
+class Cloth: Store{
+    var cloths = [Product]()
+    override init(name: String, Sguare: Int, location: String, schedule: String) {
+        super.init(name: name, Sguare: Sguare, location: location, schedule: schedule)
     }
+   override  func printInfo(){
+        print("name: \(name), Square:\(Square), location: \(location), schedule: \(schedule)")
     
-    func transfer(Id1: Int, Id2: Int, sum: Int){
-        var client1:Int? = nil
-        var client2:Int? = nil
-        for (index,client) in client.enumerated(){
-            if Id1 == client.ID{
-                client1 = index
-            }
-            if Id2 == client.ID{
-                client2 = index
-            }
-        }
-        if client1 != nil && client2 != nil {
-            client[client1 ?? 0].wallet -= sum
-            client[client2 ?? 0].wallet += sum
-        }else{ print("Таких клиентов не найдено")
-        }
+       for i in cloths{
+           print("name:\(i.name), amount: \(i.amount), prise: \(i.prise)")
+       }
     }
+    override  func addToProduct(product2: Product){
+         var test = true
+         for i in cloths {
+             if product2.name == i.name && product2.prise == i.prise {
+                 test = false
+                 i.amount += product2.amount
+             }
+         }
+         if test != false{
+            cloths.append(product2)
+         }
+     }
 }
-
-    class Customer{
-        var name: String
-        var surname: String
-        var ID: Int
-        var wallet: Int
-        init(name: String,surname: String,  ID: Int, wallet: Int) {
-            self.name = name
-            self.surname = surname
-            self.ID = ID
-            self.wallet = wallet
-            
-        }
-
-        func printInfo(){
-            print("name - \(name), ID - \(ID), wallet - \(wallet)")
-        }
-    }
- 
-var bank = Bank(name: "Optima", currency: "Som")
-var customer = Customer(name: "Ali", surname: "Abakirov", ID: 0998766, wallet:200000)
-var customer1 = Customer(name: "Dima", surname: "Aliev", ID: 0997766, wallet: 35000)
-var customer2 = Customer(name: "Pak", surname: "Si", ID: 0922664, wallet: 65000)
-var customer3 = Customer(name: "Elya", surname: "Nozri", ID: 0998776, wallet: 550400)
-bank.addToBank(customer:customer)
-bank.addToBank(customer:customer1)
-bank.addToBank(customer:customer2)
-bank.addToBank(customer:customer3)
-bank.amountOfClients()
-bank.showClientsBalanceById(Id1: 0997766)
-bank.showClientBalabceBySurname(surname: "Abakirov")
-bank.transfer(Id1: 0922664, Id2:  0998776, sum: 50)
-bank.showClientsBalanceById(Id1: 0998776)
-
-
-//Критерии приемки:
-//Код каждого студента должен быть уникальным
-//Весь проект должен находиться в github (Все решения задач должны находиться в одном проекте так-же в коде должны комментарии которые доказывают работоспособность вашего кода)
-
-
-
-
-
-// dop.
-
-//class Human{
-//    var name: String
-//    var age: Int
-//    var country: String
-//    var city: String
-//    init(name: String, age: Int, country: String, city: String){
-//        self.name = name
-//        self.age = age
-//        self.country = country
-//        self.city = city
-//    }
-//    func printInfo(){
-//        print("My name is - \(name)\nIm - \(age)\nIm from  - \(country)\nI live in - \(city)")
-//    }
-//}
-//var human: Human? = Human(name:"Tina", age: 15, country: "Kyrgyzstan", city: "Kant")
-//var person: Human? = Human(name:"Elya", age: 28, country: "Iran", city: "Tebriz")
-//var person1:Human? = Human(name: "Melis", age: 25, country: "Turkiye", city: "Izmir")
-//var person2: Human? = Human(name: "Tanya", age: 36, country: "Russia", city: "Beloyarsky")
-//var person3: Human? = Human(name:"Nuri" , age: 19, country: "Kazakhstan", city: "Karaganda")
-//human?.printInfo()
-//person?.printInfo()
-//person1?.printInfo()
-//person2?.printInfo()
-//person3?.printInfo()
+var shop = Store(name: "Magnit", Sguare: 102, location: "Kant" , schedule: " 9:00 - 21:00")
+var cloth = Cloth(name: "Best", Sguare: 300, location: "Bishkek", schedule: "10:00 - 20:00")
+var food = Product(name: "Albeni", amount: 72, prise: 85)
+var dress = Product(name: "Dress", amount: 1, prise: 40000)
+var pants = Product(name: "Classic", amount: 2, prise: 5500)
+var dress2 = Product(name: "Dress", amount: 5, prise: 40000)
+cloth.addToProduct(product2: dress)
+cloth.addToProduct(product2: dress2)
+cloth.addToProduct(product2: pants)
+cloth.printInfo()
+//Свойства: Название товара, кол-во. Цена товара
+//После чего путём наследования от класса Магазин создать следующие классы: Магазин автозапчастей, Магазин одежды и заполнить их соответствующими параметрами
 //
+//
+//
+//Так же в конце должен быть метод, который будет отображать следующую информацию:
+//
+//Название магазина. Площадь.
+//Расположение. Часы работы.
+//Наименование товара. Кол-во товара. Цена товара (Если у вас два и более одинаковых по названию товаров - соединить)
+
+
