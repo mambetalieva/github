@@ -1,119 +1,64 @@
-import Foundation
 
-//#1. Создать класс Магазин
-//Свойства: Название, Площадь, Расположение, Часы работы, массив с товарами
-//Создать класс Товар
+var realestates = [RealEstate]()
+var apCount = 0
+var stCount = 0
+var gCount = 0
+var mansion = Apartments(square: 233.4, price: 2500000, location: "Bishkek", amountOfResidents: 12)
+var stock = Stock(square: 54.4, price: 850000, location: "Tokmok", company: "Pentouse")
+var garage = Garage(square: 100.2, price: 20000, location: "Ankara", car: "Mers", basement: true)
 
-class Store{
-    var name: String
-    var Square: Int
-    var location: String
-    var schedule: String
-    var product = [Product]()
-    init(name: String, Sguare: Int, location: String, schedule: String) {
-        self.name = name
-        self.Square = Sguare
-        self.location = location
-        self.schedule = schedule
-    }
-    func printInfo(){
-        print("name: \(name), Square:\(Square), location: \(location), schedule: \(schedule)")
-        for i in product{
-            print("name:\(i.name), amount: \(i.amount), prise: \(i.prise)")
-        }
-    }
-    func addToProduct(product2: Product){
-        var test = true
-        for i in product {
-            if product2.name == i.name && product2.prise == i.prise{
-                test = false
-                i.amount += product2.amount
-            }
-        }
-        if test != false{
-            product.append(product2)
-        }
-    }
-}
-class Product {
-    var name: String
-    var amount: Int
-    var prise: Int
-    init(name: String, amount: Int, prise: Int) {
-        self.name = name
-        self.amount = amount
-        self.prise = prise
-    }
-    
-}
-class AutoParts: Store{
-    var autoParts = [Product]()
-    override init(name: String, Sguare: Int, location: String, schedule: String) {
-        super.init(name: name, Sguare: Sguare, location: location, schedule: schedule)
-    }
-    override func printInfo(){
-        print("name: \(name), Square:\(Square), location: \(location), schedule: \(schedule)")
-        for i in autoParts{
-            print("name:\(i.name), amount: \(i.amount), prise: \(i.prise)")
-        }
-    }
-   override  func addToProduct(product2: Product){
-        var test = true
-        for i in autoParts {
-            if product2.name == i.name && product2.prise == i.prise{
-                test = false
-                i.amount += product2.amount
-            }
-        }
-        if test != false{
-            autoParts.append(product2)
-        }
-    }
-}
-class Cloth: Store{
-    var cloths = [Product]()
-    override init(name: String, Sguare: Int, location: String, schedule: String) {
-        super.init(name: name, Sguare: Sguare, location: location, schedule: schedule)
-    }
-   override  func printInfo(){
-        print("name: \(name), Square:\(Square), location: \(location), schedule: \(schedule)")
-    
-       for i in cloths{
-           print("name:\(i.name), amount: \(i.amount), prise: \(i.prise)")
-       }
-    }
-    override  func addToProduct(product2: Product){
-         var test = true
-         for i in cloths {
-             if product2.name == i.name && product2.prise == i.prise {
-                 test = false
-                 i.amount += product2.amount
-             }
-         }
-         if test != false{
-            cloths.append(product2)
-         }
-     }
-}
-var shop = Store(name: "Magnit", Sguare: 102, location: "Kant" , schedule: " 9:00 - 21:00")
-var cloth = Cloth(name: "Best", Sguare: 300, location: "Bishkek", schedule: "10:00 - 20:00")
-var food = Product(name: "Albeni", amount: 72, prise: 85)
-var dress = Product(name: "Dress", amount: 1, prise: 40000)
-var pants = Product(name: "Classic", amount: 2, prise: 5500)
-var dress2 = Product(name: "Dress", amount: 5, prise: 40000)
-cloth.addToProduct(product2: dress)
-cloth.addToProduct(product2: dress2)
-cloth.addToProduct(product2: pants)
-cloth.printInfo()
-//Свойства: Название товара, кол-во. Цена товара
-//После чего путём наследования от класса Магазин создать следующие классы: Магазин автозапчастей, Магазин одежды и заполнить их соответствующими параметрами
-//
-//
-//
-//Так же в конце должен быть метод, который будет отображать следующую информацию:
-//
-//Название магазина. Площадь.
-//Расположение. Часы работы.
-//Наименование товара. Кол-во товара. Цена товара (Если у вас два и более одинаковых по названию товаров - соединить)
+realestates.append(mansion)
+realestates.append(stock)
+realestates.append(garage)
 
+for i in realestates{
+    i.showInfo()
+    if i is Apartments{
+        apCount+=1
+    }else if i is Stock{
+        stCount+=1
+    }else if i is Garage{
+        gCount+=1
+    }
+}
+print("amount of apartments: \(apCount),amount of stocks:\(stCount),amount of garages:\(gCount)")
+
+for item in realestates {  if item is Apartments{
+    print("Apartment")
+    item.showInfo()
+
+}else if item is Stock {
+    print("Stock")
+    item.showInfo()
+
+}else if item is Garage {
+    print("Garace")
+    item.showInfo()
+}
+}
+
+showComfortApartments(apartment:  "THIS APARTMENT WITH ALL CONVINIENCES")
+
+
+
+
+
+//#1. Создать класс Недвижимость
+//Параметры: Площадь, цена, адрес
+//Методы: Изменение цены, отображение информации
+//Наследовать от него классы: Квартира, Склад, Гараж
+//
+//В классе Квартира добавить параметр: количество жильцов, массив с удобствами(например: сан.узел, интернет и тд)
+//Переопределить метод из базового класса и отобразить все данные об объекте в одной строке
+//В классе склад доп.параметры - какой компании пренадлежит и массив с имеющимися товарами на складе
+//Добавить метод, отображающий товары на складе
+//
+//В классе Гараж добавить параметры - какая машина находится внутри и есть ли подвал внутри гаража
+//Доступ к свойствам ограничить модификаторами доступа
+//
+//В main создать массив недвижимости и отобразить какого типа недвижимости сколько имеется и по каждому из типов выдать полную информацию
+//Критерии приемки:
+//Код каждого студента должен быть уникальным
+//Весь проект должен находиться в github (Все решения задач должны находиться в одном проекте так-же в коде должны комментарии которые доказывают работоспособность вашего кода)
+//
 
